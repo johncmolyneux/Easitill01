@@ -98,17 +98,17 @@ h1 {
 
 @keyframes fadeIn {
     from { opacity: 0.0; }
-	50% { opacity: 0.0; }
     to { opacity: 1.0; }
 }
  
 @-webkit-keyframes fadeIn {
     from { opacity: 0.0; }
-	50% { opacity: 0.0; }
     to { opacity: 1.0; }
 }
 
 .app {
-    animation:fadeIn 6000ms 1;
-    -webkit-animation:fadeIn 6000ms 1;
+	animation-delay: 1s;
+    animation:fadeIn 5s 1;
+	-webkit-animation-delay: 1s;
+    -webkit-animation:fadeIn 5s 1;
 }
