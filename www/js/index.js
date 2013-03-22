@@ -24,5 +24,6 @@ var app = {
         document.addEventListener('deviceready', this.deviceready, false);
     },
     deviceready: function() {
+		$(".app").fadeIn(5000);
     },
 };
