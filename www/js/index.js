@@ -82,17 +82,17 @@ function readAsText(file) {
 		}
 		
 		function successCB() {
-			var startTime = new Date();
-            
-			var line = lines[i].split(",");
-			var sql = "INSERT INTO veprods (linecode, description, barcode, price, stock) values (" +
-				line[0] + ", " +
-				"'" + line[2] + "', " +
-				"'" + line[1] + "', " +
-				line[6] + "," + 
-				line[13] + ")";
-				
-			alert(sql);
+			for (var i = 0; i < 5; i++) {
+				var line = lines[i].split(",");
+				var sql = "INSERT INTO veprods (linecode, description, barcode, price, stock) values (" +
+					line[0] + ", " +
+					"'" + line[2] + "', " +
+					"'" + line[1] + "', " +
+					line[6] + "," + 
+					line[13] + ")";
+					
+				alert(sql);
+			}
 		}
 	};
 	reader.readAsText(file);
