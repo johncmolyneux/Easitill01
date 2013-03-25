@@ -125,7 +125,7 @@ function findLineCode() {
 	}
 
 	function querySuccess(tx, results) {
-		alert(results);
+		alert(results.rows.item(0).data);
 	}
 	
 	function errorCB(err) {
