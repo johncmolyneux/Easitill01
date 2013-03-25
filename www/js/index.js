@@ -55,8 +55,8 @@ function gotFile(file){
 function readAsText(file) {
 	var reader = new FileReader();
 	reader.onloadend = function(evt) {
-		string csv = evt.target.result;
-		string lines = csv.split("\n");
+		var csv = evt.target.result;
+		var lines = csv.split("\n");
 		alert("Text read complete - " + lines.length + " lines");
 	};
 	reader.readAsText(file);
