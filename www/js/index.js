@@ -125,6 +125,8 @@ function findLineCode() {
 	html5sql.process(
 		["SELECT * FROM veprods WHERE linecode = " + lineCode + ";"],
 		function(transaction, results, rowsArray) {
+			alert(rowsArray[0]);
+			/*
 			var description = rowsArray[0].description;
 			var barcode = rowsArray[0].barcode;
 			var price = rowsArray[0].price;
@@ -134,6 +136,7 @@ function findLineCode() {
 				barcode + "\r\n" +
 				price + "\r\n" +
 				stock);
+			*/
 		},
 		function(error, statement) {
 		  alert("Error : " + error.message);        
