@@ -17,7 +17,7 @@
  * under the License.
  */
  
-var _dbSize = 5 * 1024 * 1024;
+var _dbSize = 32 * 1024 * 1024;
 
 var app = {
     initialize: function() {
@@ -67,22 +67,10 @@ function readAsText(file) {
 
 		var csv = evt.target.result;
 		var lines = csv.split("\n");
-		//var db = window.openDatabase("Eastill", "1.0", "Easitill DB", _dbSize);
-		//db.transaction(createDB, errorCB, successCB);
 		
-		successCB();
-		
-		function createDB(tx) {
-			 tx.executeSql('DROP TABLE IF EXISTS veprods');
-			 tx.executeSql('CREATE TABLE IF NOT EXISTS veprods (linecode int, description varchar(255), barcode varchar(25), price int, stock int)');
-		}
-
-		function errorCB(err) {
-			alert("Error processing SQL: "+err.code);
-		}
-		
-		function successCB() {
-			for (var i = 0; i < 5; i++) {
+		html5sql.openDatabase("Easitill", "Easitill DB", _dbSize);
+		html5sql.process("DROP TABLE IF EXISTS veprods; CREATE TABLE IF NOT EXISTS veprods (linecode int, description varchar(255), barcode varchar(25), price int, stock int); ", function() {
+			for (var i = 1; i < 5; i++) {
 				var line = lines[i].split(",");
 				var sql = "INSERT INTO veprods (linecode, description, barcode, price, stock) values (" +
 					line[0] + ", " +
@@ -93,7 +81,9 @@ function readAsText(file) {
 					
 				alert(sql);
 			}
-		}
+		}, function(error, failingQuery) {
+			alert("Error : " + error.message + "\r\n" + failingQuery);
+		});
 	};
 	reader.readAsText(file);
 }
