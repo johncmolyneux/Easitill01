@@ -134,6 +134,10 @@ function findLineCode() {
 		alert(results.rows.item(0).data[4]);
 	}
 	
+	function errorCB(err) {
+		alert("Error processing SQL: " + err.code);
+	}
+
 	var db = window.openDatabase("Easitill", "1.0", "Easitill DB", _dbSize);
 	db.transaction(queryDB, errorCB);
 }
