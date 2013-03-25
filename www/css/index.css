@@ -95,3 +95,11 @@ h1 {
 .hide {
     display:none;
 }
+
+.menu {
+	display: none;
+	text-align: center;
+}
+.menu button {
+	padding: 5px 10px;
+}

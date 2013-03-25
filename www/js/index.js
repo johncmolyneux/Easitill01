@@ -24,8 +24,8 @@ var app = {
         document.addEventListener('deviceready', this.deviceready, false);
     },
     deviceready: function() {
-		$(".app").delay(200).fadeIn(1000).delay(1000).fadeOut(1000, function() {
-			windows.location.replace("menu.html");
+		$(".splash-screen").delay(200).fadeIn(1000).delay(1000).fadeOut(1000, function() {
+			$(".menu").fadeIn(1000);
 		});
     },
 };
