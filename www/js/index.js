@@ -24,19 +24,25 @@ var app = {
         document.addEventListener('deviceready', this.deviceready, false);
     },
     deviceready: function() {
-		$(".splash-screen").delay(500).fadeIn(2000).delay(1000).fadeOut(1000, function() {
-			$(".menu").show();
-			$(".menu #button-create-database").on("click", function() {
+		$(".screen-splash-screen").delay(500).fadeIn(2000).delay(1000).fadeOut(1000, function() {
+			showScreen("screen-menu");
+			$(".screen-menu #button-create-database").on("click", function() {
 				createDatabase();
 			});
-			$(".menu #button-run-mini-till-demo").on("click", function() {
+			$(".screen-menu #button-run-mini-till-demo").on("click", function() {
 				alert("run mini till demo");
 			});
 		});
     },
 };
 
+function showScreen(screenName) {
+	$(".screen").hide();
+	$(".screen ." + screenName).show();
+}
+
 function createDatabase() {
+	showScreen("screen-create-database");
 	window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, fail);
 }
 
@@ -57,7 +63,7 @@ function readAsText(file) {
 	reader.onloadend = function(evt) {
 		var csv = evt.target.result;
 		var lines = csv.split("\n");
-		alert("Text read complete - " + lines.length + " lines");
+		
 	};
 	reader.readAsText(file);
 }

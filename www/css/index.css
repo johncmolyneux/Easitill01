@@ -56,7 +56,6 @@ body {
     text-align:center;
     padding:0px;     /* image height is 200px (bottom 20px are overlapped with text) */
     margin:-80px 0px 0px -200px;  /* offset vertical: half of image height and text area height */
-    display: none;
 }
 
 /* Landscape layout (with min-width) */
@@ -96,17 +95,32 @@ h1 {
     display:none;
 }
 
-.menu {
-	margin-top: 100px;
+.screen {
 	display: none;
+}
+
+.screen-menu {
+	margin-top: 100px;
 	text-align: center;
 }
-.menu h1 {
+.screen-menu h1 {
 	font-size: 3em;
 	font-weight: bold;
 }
-.menu button {
+.screen-menu button {
 	padding: 15px 30px;
 	font-size: 2em;
 	margin-bottom: 15px;
+}
+
+.progress-container {
+	width: 300px;
+	height: 20px;
+	border: 2px solid blue;
+	padding: 5px;
+}
+.progress-bar {
+	background-color: blue;
+	width: 0%;
+	height: 100%;
 }
