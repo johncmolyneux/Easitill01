@@ -21,7 +21,7 @@
     -webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
     -webkit-tap-highlight-color: rgba(0,0,0,0); /* make transparent link selection, adjust last value opacity 0 to 1.0 */
     -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
-	font-size: 1em;
+	font-size: 2em;
 }
 
 body {
@@ -38,7 +38,6 @@ body {
     );
     background-attachment:fixed;
     font-family:'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
-    font-size:12px;
     height:100%;
     margin:0px;
     padding:0px;
@@ -67,6 +66,10 @@ body {
         margin:-80px 0px 0px -200px;  /* offset vertical: half of image height */
                                       /* offset horizontal: half of image width and text area width */
     }
+}
+
+h1 {
+	font-size: 4em;
 }
 
 input {
