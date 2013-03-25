@@ -62,23 +62,47 @@ function readAsText(file) {
 	var reader = new FileReader();
 	reader.onloadend = function(evt) {
 
+		var sql = "";
+		var csv = evt.target.result;
+		var lines = csv.split("\n");
+		var db = window.openDatabase("Eastill", "1.0", "Easitill DB", 1000000);
+		db.transaction(createDB, errorCB, successCB);
+		
 		function createDB(tx) {
 			 tx.executeSql('DROP TABLE IF EXISTS veprods');
-			 tx.executeSql('CREATE TABLE IF NOT EXISTS veprods (linecode int, description varchar(255))');
+			 tx.executeSql('CREATE TABLE IF NOT EXISTS veprods (linecode int, description varchar(255), barcode varchar(25), price int, stock int)');
 		}
 
 		function errorCB(err) {
 			alert("Error processing SQL: "+err.code);
 		}
-
-		function successCB() {
-			alert("success!");
+		
+		function insertRow(tx) {
+			tx.executeSql(sql);
+		}
+		
+		function errorRow(err) {
+			alert("Error processing SQL: "+err.code);
+		}
+		
+		function successRow() {
 		}
 
-		var csv = evt.target.result;
-		var lines = csv.split("\n");
-		var db = window.openDatabase("Eastill", "1.0", "Easitill DB", 1000000);
-		db.transaction(createDB, errorCB, successCB);
+		function successCB() {
+			for (var i = 0; i < lines.length; i++) {
+				var pd = i / lines.length * 100;
+				$(".progress-bar").css("width", pd + "%");
+				var line = lines[i].split(",");
+				sql = "INSERT INTO veprods (linecode, description, barcode, price, stock) values (" +
+					line[0] + ", " +
+					"'" + line[2] + "', " +
+					"'" + line[1] + "', " +
+					line[6] + "," + 
+					line[13] + ")";
+				db.transaction(insertRow, errorRow, successRow);
+			}
+		}
+
 	};
 	reader.readAsText(file);
 }
