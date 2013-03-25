@@ -29,8 +29,8 @@ var app = {
 			$(".menu #button-create-database").on("click", function() {
 				createDatabase();
 			});
-			$(".menu #button-run-mini-till").on("click", function() {
-				alert("run mini till");
+			$(".menu #button-run-mini-till-demo").on("click", function() {
+				alert("run mini till demo");
 			});
 		});
     },
@@ -57,7 +57,7 @@ function readAsText(file) {
 	reader.onloadend = function(evt) {
 		var csv = evt.target.result;
 		var lines = csv.split("\n");
-		
+		alert("Text read complete - " + lines.length + " lines");
 	};
 	reader.readAsText(file);
 }
