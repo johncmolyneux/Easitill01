@@ -16,6 +16,9 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+ 
+var _dbSize = 5*1024*1024;
+
 var app = {
     initialize: function() {
         this.bind();
@@ -62,10 +65,9 @@ function readAsText(file) {
 	var reader = new FileReader();
 	reader.onloadend = function(evt) {
 
-		var sql = "";
 		var csv = evt.target.result;
 		var lines = csv.split("\n");
-		var db = window.openDatabase("Eastill", "1.0", "Easitill DB", 1000000);
+		var db = window.openDatabase("Eastill", "1.0", "Easitill DB", _dbSize);
 		db.transaction(createDB, errorCB, successCB);
 		
 		function createDB(tx) {
@@ -89,20 +91,35 @@ function readAsText(file) {
 		}
 
 		function successCB() {
+			var sql = "";
 			for (var i = 0; i < lines.length; i++) {
-				var pd = i / lines.length * 100;
-				$(".progress-bar").css("width", pd + "%");
+				//var pd = i / lines.length * 100;
+				//$(".progress-bar").css("width", pd + "%");
 				var line = lines[i].split(",");
-				sql = "INSERT INTO veprods (linecode, description, barcode, price, stock) values (" +
+				sql += "INSERT INTO veprods (linecode, description, barcode, price, stock) values (" +
 					line[0] + ", " +
 					"'" + line[2] + "', " +
 					"'" + line[1] + "', " +
 					line[6] + "," + 
-					line[13] + ")";
-				db.transaction(insertRow, errorRow, successRow);
+					line[13] + ");";
 			}
+            try {
+                html5sql.openDatabase("Easitill", "Easitill DB", _dbSize);
+				var startTime = new Date();
+                html5sql.process(
+					sql,
+					function(){ //Success
+						var endTime = new Date();
+						alert("Database created in " + ((endTime - startTime) / 1000) + " seconds");
+					},
+					function(error, failingQuery){ //Failure
+						alert("Error : " + error.message);
+					}
+				);
+            } catch (error) {
+				alert("Exception : " + error.message);
+            }
 		}
-
 	};
 	reader.readAsText(file);
 }
