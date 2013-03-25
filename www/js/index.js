@@ -79,22 +79,9 @@ function readAsText(file) {
 			alert("Error processing SQL: "+err.code);
 		}
 		
-		function insertRow(tx) {
-			tx.executeSql(sql);
-		}
-		
-		function errorRow(err) {
-			alert("Error processing SQL: "+err.code);
-		}
-		
-		function successRow() {
-		}
-
 		function successCB() {
 			var startTime = new Date();
             
-			html5sql.openDatabase("Easitill", "Easitill DB", _dbSize);
-			
 			var line = lines[i].split(",");
 			var sql = "INSERT INTO veprods (linecode, description, barcode, price, stock) values (" +
 				line[0] + ", " +
@@ -102,6 +89,7 @@ function readAsText(file) {
 				"'" + line[1] + "', " +
 				line[6] + "," + 
 				line[13] + ")";
+				
 			alert(sql);
 		}
 	};
