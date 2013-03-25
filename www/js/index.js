@@ -38,7 +38,7 @@ var app = {
 
 function showScreen(screenName) {
 	$(".screen").hide();
-	$(".screen ." + screenName).show();
+	$(".screen." + screenName).show();
 }
 
 function createDatabase() {
