@@ -70,7 +70,7 @@ function readAsText(file) {
 		
 		html5sql.openDatabase("Easitill", "Easitill DB", _dbSize);
 		html5sql.process("DROP TABLE IF EXISTS veprods; CREATE TABLE IF NOT EXISTS veprods (linecode int, description varchar(255), barcode varchar(25), price int, stock int); ", function() {
-			for (var i = 1; i < lines.length; i++) {
+			for (var i = 1; i < 10; i++) {
 				var line = lines[i].split(",");
 				var sql = "INSERT INTO veprods (linecode, description, barcode, price, stock) values (" +
 					line[0] + ", " +
