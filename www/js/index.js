@@ -126,12 +126,12 @@ function findLineCode() {
 
 	function querySuccess(tx, results) {
 		var len = results.rows.length;
-		alert(results.rows.item(0).data);
-		alert(results.rows.item(0).data[0]);
-		alert(results.rows.item(0).data[1]);
-		alert(results.rows.item(0).data[2]);
-		alert(results.rows.item(0).data[3]);
-		alert(results.rows.item(0).data[4]);
+		alert(results.rows.item[0].data);
+		alert(results.rows.item[0].data[0]);
+		alert(results.rows.item[0].data[1]);
+		alert(results.rows.item[0].data[2]);
+		alert(results.rows.item[0].data[3]);
+		alert(results.rows.item[0].data[4]);
 	}
 	
 	function errorCB(err) {
