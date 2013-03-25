@@ -105,7 +105,6 @@ function readAsText(file) {
 					line[6] + "," + 
 					line[13] + ")";
                 html5sql.process(sql);
-				);
 			}
 			
 			var endTime = new Date();
