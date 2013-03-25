@@ -46,7 +46,9 @@ function showScreen(screenName) {
 
 function createDatabase() {
 	showScreen("screen-create-database");
-	window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, fail);
+	setTimeout(function() {
+		window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, fail);
+	}, 500);
 }
 
 function gotFS(fileSystem) {
@@ -67,10 +69,11 @@ function readAsText(file) {
 
 		var csv = evt.target.result;
 		var lines = csv.split("\n");
-		
+		var i = 1;
 		html5sql.openDatabase("Easitill", "Easitill DB", _dbSize);
 		html5sql.process("DROP TABLE IF EXISTS veprods; CREATE TABLE IF NOT EXISTS veprods (linecode int, description varchar(255), barcode varchar(25), price int, stock int); ", function() {
-			for (var i = 1; i < 10; i++) {
+
+			function addRow() {
 				var line = lines[i].split(",");
 				var sql = "INSERT INTO veprods (linecode, description, barcode, price, stock) values (" +
 					line[0] + ", " +
@@ -83,7 +86,16 @@ function readAsText(file) {
 				
 				var pd = i / lines.length * 100;
 				$(".progress-bar").css("width", pd + "%");
+				
+				i++;
+				
+				if (i < 1000) {
+					setTimeout(addRow, 10);
+				}
 			}
+			
+			addRow();
+			
 		}, function(error, failingQuery) {
 			alert("Error : " + error.message + "\r\n" + failingQuery);
 		});
