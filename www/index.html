@@ -37,14 +37,16 @@
         </script>
     </head>
     <body>
+		<div data-theme="a" data-role="header" data-position="fixed">
+			<h1>
+				Mini-till test
+			</h1>
+		</div>
+		<!----------------------------------------------- SPLASH SCREEN ----------------------------------------------->
         <div class="screen-splash-screen screen">
         </div>
+		<!-----------------------------------------------  MENU SCREEN  ----------------------------------------------->
 		<div class="screen-menu screen">
-			<div data-theme="a" data-role="header" data-position="fixed">
-				<h3>
-					Mini-till test
-				</h3>
-			</div>
 			<div data-role="content">
 				<a id="button-create-database" data-role="button" href="#page1">
 					Create database
@@ -54,15 +56,29 @@
 				</a>
 			</div>
 		</div>
+		<!------------------------------------------- CREATE DATABASE SCREEN  ----------------------------------------->
 		<div class="screen-create-database screen">
-			<div data-theme="a" data-role="header" data-position="fixed">
-				<h3>
-					Mini-till test
-				</h3>
-			</div>
 			<div class="progress-container">
 				<div class="progress-bar"></div>
 			</div>
+		</div>
+		<!---------------------------------------------- MINI-TILL SCREEN --------------------------------------------->
+		<div class="screen-mini-till screen">
+			<div>Enter Linecode:</div>
+			<div><input type="number" id="till-input-linecode" /></div>
+			<br />
+			<br />
+			<div>Enter Barcode:</div>
+			<div><input type="string" id="till-input-barcode" /><button id="till-button-scan-barcode">Scan...</button></div>
+			<br />
+			<br />
+			<fieldset>
+				<legend>Product Details</legend>
+				<br />
+				<br />
+				<br />
+				<br />
+			</fieldset>
 		</div>
     </body>
 </html>

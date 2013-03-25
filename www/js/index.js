@@ -33,7 +33,7 @@ var app = {
 				createDatabase();
 			});
 			$(".screen-menu #button-run-mini-till-demo").on("click", function() {
-				alert("run mini till demo");
+				runMiniTillDemo();
 			});
 		});
     },
@@ -105,4 +105,11 @@ function readAsText(file) {
 
 function fail(evt) {
 	alert(evt.target.error.code);
+}
+
+function runMiniTillDemo() {
+	showScreen("screen-mini-till");
+	$("#till-button-scan-barcode").button().off("click").on("click", function() {
+		alert("scan barcode here");
+	});
 }
