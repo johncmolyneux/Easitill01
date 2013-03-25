@@ -25,7 +25,13 @@ var app = {
     },
     deviceready: function() {
 		$(".splash-screen").delay(200).fadeIn(1000).delay(1000).fadeOut(1000, function() {
-			$(".menu").fadeIn(1000);
+			$(".menu").show();
+			$(".menu #button-create-database").on("click", function() {
+				alert("create database");
+			});
+			$(".menu #button-run-mini-till-demo").on("click", function() {
+				alert("run mini till demo");
+			});
 		});
     },
 };
