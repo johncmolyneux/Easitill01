@@ -24,13 +24,13 @@ var app = {
         document.addEventListener('deviceready', this.deviceready, false);
     },
     deviceready: function() {
-		$(".splash-screen").delay(500).fadeIn(1000).delay(1000).fadeOut(1000, function() {
-			$(".menu").delay(500).fadeIn(1000);
+		$(".splash-screen").delay(500).fadeIn(2000).delay(1000).fadeOut(1000, function() {
+			$(".menu").show();
 			$(".menu #button-create-database").on("click", function() {
 				createDatabase();
 			});
-			$(".menu #button-run-mini-till-demo").on("click", function() {
-				alert("run mini till demo");
+			$(".menu #button-run-mini-till").on("click", function() {
+				alert("run mini till");
 			});
 		});
     },
@@ -57,7 +57,7 @@ function readAsText(file) {
 	reader.onloadend = function(evt) {
 		var csv = evt.target.result;
 		var lines = csv.split("\n");
-		alert("Text read complete - " + lines.length + " lines");
+		
 	};
 	reader.readAsText(file);
 }

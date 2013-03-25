@@ -23,10 +23,12 @@
         <meta name="format-detection" content="telephone=no" />
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
         <link rel="stylesheet" type="text/css" href="css/index.css" />
+        <link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.3.0.min.css" />
         <title>Easitill Test App</title>
         <script type="text/javascript" src="phonegap.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
         <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+		<script type="text/javascript" src="js/jquery.mobile-1.3.0.min.js"></script>
         <script type="text/javascript">
 			$(function() {
 				app.initialize();
@@ -37,11 +39,19 @@
         <div class="splash-screen">
         </div>
 		<div class="menu">
-			<h1>Easitill Test App</h1>
-			<br />
-			<button id="button-create-database">Create database</button>
-			<br />
-			<button id="button-run-mini-till-demo">Run mini till demo</button>
+			<div data-theme="a" data-role="header">
+				<h3>
+					Mini-till test
+				</h3>
+			</div>
+			<div data-role="content">
+				<a id="button-create-database" data-role="button" href="#page1">
+					Create database
+				</a>
+				<a id="button-run-mini-till" data-role="button" href="#page1">
+					Run mini-till
+				</a>
+			</div>
 		</div>
     </body>
 </html>
