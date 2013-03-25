@@ -61,9 +61,24 @@ function gotFile(file){
 function readAsText(file) {
 	var reader = new FileReader();
 	reader.onloadend = function(evt) {
+
+		function createDB(tx) {
+			 tx.executeSql('DROP TABLE IF EXISTS veprods');
+			 tx.executeSql('CREATE TABLE IF NOT EXISTS veprods (linecode int, description varchar(255))');
+		}
+
+		function errorCB(err) {
+			alert("Error processing SQL: "+err.code);
+		}
+
+		function successCB() {
+			alert("success!");
+		}
+
 		var csv = evt.target.result;
 		var lines = csv.split("\n");
-		
+		var db = window.openDatabase("Eastill", "1.0", "Easitill DB", 1000000);
+		db.transaction(createDB, errorCB, successCB);
 	};
 	reader.readAsText(file);
 }

@@ -116,12 +116,12 @@ h1 {
 .progress-container {
 	width: 300px;
 	height: 20px;
-	border: 2px solid blue;
+	border: 2px solid black;
 	padding: 5px;
-	margin: 20px;
+	margin: 50px 20px 20px;
 }
 .progress-bar {
-	background-color: blue;
+	background-color: black;
 	width: 0%;
 	height: 100%;
 }
