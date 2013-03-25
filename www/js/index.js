@@ -27,7 +27,7 @@ var app = {
 		$(".splash-screen").delay(500).fadeIn(1000).delay(1000).fadeOut(1000, function() {
 			$(".menu").delay(500).fadeIn(1000);
 			$(".menu #button-create-database").on("click", function() {
-				alert("create database");
+				createDatabase();
 			});
 			$(".menu #button-run-mini-till-demo").on("click", function() {
 				alert("run mini till demo");
@@ -35,3 +35,32 @@ var app = {
 		});
     },
 };
+
+function createDatabase() {
+	window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, fail);
+}
+
+function gotFS(fileSystem) {
+	fileSystem.root.getFile("/sdcard/external_sd/temp/STKBYGRP.CSV", null, gotFileEntry, fail);
+}
+
+function gotFileEntry(fileEntry) {
+	fileEntry.file(gotFile, fail);
+}
+
+function gotFile(file){
+	readAsText(file);
+}
+
+function readAsText(file) {
+	var reader = new FileReader();
+	reader.onloadend = function(evt) {
+		alert("Read as text");
+		//console.log(evt.target.result);
+	};
+	reader.readAsText(file);
+}
+
+function fail(evt) {
+	alert(evt.target.error.code);
+}
