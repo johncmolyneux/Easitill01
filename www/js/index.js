@@ -90,26 +90,37 @@ function readAsText(file) {
 		function successRow() {
 		}
 
+		var line = 0;
+		
 		function successCB() {
 			var startTime = new Date();
-			
             html5sql.openDatabase("Easitill", "Easitill DB", _dbSize);
-			for (var i = 0; i < lines.length; i++) {
+			
+			function insertRow() {
+				line++;
 				var pd = i / lines.length * 100;
 				$(".progress-bar").css("width", pd + "%");
-				var line = lines[i].split(",");
-				var sql = "INSERT INTO veprods (linecode, description, barcode, price, stock) values (" +
-					line[0] + ", " +
-					"'" + line[2] + "', " +
-					"'" + line[1] + "', " +
-					line[6] + "," + 
-					line[13] + ")";
-                html5sql.process(sql);
+				if (line < lines.length) {
+					var thisline = lines[i].split(",");
+					var sql = "INSERT INTO veprods (linecode, description, barcode, price, stock) values (" +
+						thisline[0] + ", " +
+						"'" + thisline[2] + "', " +
+						"'" + thisline[1] + "', " +
+						thisline[6] + "," + 
+						thisline[13] + ")";
+					html5sql.process(sql, 
+						function() {
+							setTimeout(insertRow, 5);
+						},
+						function() {
+							alert("there was an error");
+						}
+					);
+				} else {
+					var endTime = new Date();
+					alert("Database populated in " + ((endTime - startTime) / 1000) + " seconds");
+				}
 			}
-			
-			var endTime = new Date();
-			
-			alert("Database populated in " + ((endTime - startTime) / 1000) + " seconds");
 		}
 	};
 	reader.readAsText(file);
