@@ -89,8 +89,8 @@ function readAsText(file) {
 				
 				i++;
 				
-				if (i < 1000) {
-					setTimeout(addRow, 10);
+				if (i < lines.length) {
+					setTimeout(addRow, 2);
 				}
 			}
 			
