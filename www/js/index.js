@@ -118,20 +118,15 @@ function runMiniTill() {
 }
 
 function findLineCode() {
-	var lineCode = $("#till-input-linecode").val();
 	
 	function queryDB(tx) {
-		tx.executeSql('SELECT * FROM veprods WHERE linecode = ' + lineCode, [], querySuccess, errorCB);
+		var lineCode = $("#till-input-linecode").val();
+		alert("SELECT * FROM veprods WHERE linecode = " + lineCode);
+		tx.executeSql("SELECT * FROM veprods WHERE linecode = " + lineCode, [], querySuccess, errorCB);
 	}
 
 	function querySuccess(tx, results) {
-		var len = results.rows.length;
-		alert(results.rows.item[0].data);
-		alert(results.rows.item[0].data[0]);
-		alert(results.rows.item[0].data[1]);
-		alert(results.rows.item[0].data[2]);
-		alert(results.rows.item[0].data[3]);
-		alert(results.rows.item[0].data[4]);
+		alert("SQL query success!!");
 	}
 	
 	function errorCB(err) {
