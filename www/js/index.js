@@ -17,7 +17,7 @@
  * under the License.
  */
  
-var _dbSize = 100 * 1024 * 1024;
+var _dbSize = 5 * 1024 * 1024;
 
 var app = {
     initialize: function() {
@@ -67,8 +67,10 @@ function readAsText(file) {
 
 		var csv = evt.target.result;
 		var lines = csv.split("\n");
-		var db = window.openDatabase("Eastill", "1.0", "Easitill DB", _dbSize);
-		db.transaction(createDB, errorCB, successCB);
+		//var db = window.openDatabase("Eastill", "1.0", "Easitill DB", _dbSize);
+		//db.transaction(createDB, errorCB, successCB);
+		
+		successCB();
 		
 		function createDB(tx) {
 			 tx.executeSql('DROP TABLE IF EXISTS veprods');
