@@ -101,7 +101,10 @@ h1 {
 	display: none;
 	text-align: center;
 }
+.menu h1 {
+	font-size: 3em;
+}
 .menu button {
 	padding: 5px 10px;
-	font-size: 10em;
+	font-size: 2em;
 }
