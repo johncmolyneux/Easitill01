@@ -119,27 +119,19 @@ function runMiniTill() {
 
 function findLineCode() {
 	
-	var linecode = $("#till-input-linecode").val();
+	function queryDB(tx) {
+		var lineCode = $("#till-input-linecode").val();
+		tx.executeSql("SELECT * FROM veprods WHERE linecode = " + lineCode, [], querySuccess, errorCB);
+	}
+
+	function querySuccess(tx, results) {
+		alert(results.rows.item(0).linecode);
+	}
 	
-	html5sql.openDatabase("Easitill", "Easitill DB", _dbSize);
-	html5sql.process(
-		["SELECT * FROM veprods WHERE linecode = " + lineCode + ";"],
-		function(transaction, results, rowsArray) {
-			alert(rowsArray[0]);
-			/*
-			var description = rowsArray[0].description;
-			var barcode = rowsArray[0].barcode;
-			var price = rowsArray[0].price;
-			var stock = rowsArray[0].stock;
-			alert(linecode + "\r\n" +
-				description + "\r\n" + 
-				barcode + "\r\n" +
-				price + "\r\n" +
-				stock);
-			*/
-		},
-		function(error, statement) {
-		  alert("Error : " + error.message);        
-		}
-	);
+	function errorCB(err) {
+		alert("Error processing SQL: " + err.code);
+	}
+
+	var db = window.openDatabase("Easitill", "1.0", "Easitill DB", _dbSize);
+	db.transaction(queryDB, errorCB);
 }
