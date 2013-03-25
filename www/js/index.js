@@ -36,10 +36,10 @@ var app = {
 		$(".screen-menu #button-run-mini-till").on("click", function() {
 			runMiniTill();
 		});
-		$("#till-button-find-linecode").button().on("click", function() {
+		$(".screen-mini-till #till-button-find-linecode").button().on("click", function() {
 			findLineCode();
 		});
-		$("#till-button-scan-barcode").button().on("click", function() {
+		$(".screen-mini-till #till-button-scan-barcode").button().on("click", function() {
 			alert("scan barcode here");
 		});
     },
