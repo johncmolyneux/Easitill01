@@ -121,12 +121,11 @@ function findLineCode() {
 	
 	function queryDB(tx) {
 		var lineCode = $("#till-input-linecode").val();
-		alert("SELECT * FROM veprods WHERE linecode = " + lineCode);
 		tx.executeSql("SELECT * FROM veprods WHERE linecode = " + lineCode, [], querySuccess, errorCB);
 	}
 
 	function querySuccess(tx, results) {
-		alert("SQL query success!!");
+		alert(results);
 	}
 	
 	function errorCB(err) {
