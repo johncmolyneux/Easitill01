@@ -29,12 +29,18 @@ var app = {
     deviceready: function() {
 		$(".screen-splash-screen").delay(500).fadeIn(2000).delay(1000).fadeOut(1000, function() {
 			showScreen("screen-menu");
-			$(".screen-menu #button-create-database").on("click", function() {
-				createDatabase();
-			});
-			$(".screen-menu #button-run-mini-till").on("click", function() {
-				runMiniTill();
-			});
+		});
+		$(".screen-menu #button-create-database").on("click", function() {
+			createDatabase();
+		});
+		$(".screen-menu #button-run-mini-till").on("click", function() {
+			runMiniTill();
+		});
+		$("#till-button-find-linecode").button().on("click", function() {
+			findLineCode();
+		});
+		$("#till-button-scan-barcode").button().on("click", function() {
+			alert("scan barcode here");
 		});
     },
 };
@@ -109,7 +115,25 @@ function fail(evt) {
 
 function runMiniTill() {
 	showScreen("screen-mini-till");
-	$("#till-button-scan-barcode").button().off("click").on("click", function() {
-		alert("scan barcode here");
-	});
+}
+
+function findLineCode() {
+	var lineCode = $("#till-input-linecode").val();
+	
+	function queryDB(tx) {
+		tx.executeSql('SELECT * FROM veprods WHERE linecode = ' + lineCode, [], querySuccess, errorCB);
+	}
+
+	function querySuccess(tx, results) {
+		var len = results.rows.length;
+		alert(results.rows.item(0).data);
+		alert(results.rows.item(0).data[0]);
+		alert(results.rows.item(0).data[1]);
+		alert(results.rows.item(0).data[2]);
+		alert(results.rows.item(0).data[3]);
+		alert(results.rows.item(0).data[4]);
+	}
+	
+	var db = window.openDatabase("Easitill", "1.0", "Easitill DB", _dbSize);
+	db.transaction(queryDB, errorCB);
 }
