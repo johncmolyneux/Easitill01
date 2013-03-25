@@ -24,8 +24,8 @@ var app = {
         document.addEventListener('deviceready', this.deviceready, false);
     },
     deviceready: function() {
-		$(".splash-screen").delay(200).fadeIn(1000).delay(1000).fadeOut(1000, function() {
-			$(".menu").show();
+		$(".splash-screen").delay(500).fadeIn(1000).delay(1000).fadeOut(1000, function() {
+			$(".menu").delay(500).fadeIn(1000);
 			$(".menu #button-create-database").on("click", function() {
 				alert("create database");
 			});
