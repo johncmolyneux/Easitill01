@@ -125,7 +125,12 @@ function findLineCode() {
 	}
 
 	function querySuccess(tx, results) {
-		alert(results.rows.item(0).linecode);
+		var item = results.rows.item(0);
+		$("#td-linecode").text(item.linecode);
+		$("#td-description").text(item.description);
+		$("#td-barcode").text(item.barcode);
+		$("#td-price").text(item.price);
+		$("#td-stock").text(item.stock);
 	}
 	
 	function errorCB(err) {
