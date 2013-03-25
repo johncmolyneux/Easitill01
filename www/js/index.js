@@ -101,21 +101,22 @@ function readAsText(file) {
 				var pd = i / lines.length * 100;
 				$(".progress-bar").css("width", pd + "%");
 				if (line < lines.length) {
-					var thisline = lines[i].split(",");
-					var sql = "INSERT INTO veprods (linecode, description, barcode, price, stock) values (" +
-						thisline[0] + ", " +
-						"'" + thisline[2] + "', " +
-						"'" + thisline[1] + "', " +
-						thisline[6] + "," + 
-						thisline[13] + ")";
-					html5sql.process(sql, 
-						function() {
-							setTimeout(insertRow, 5);
-						},
-						function() {
-							alert("there was an error");
-						}
-					);
+					//var thisline = lines[i].split(",");
+					//var sql = "INSERT INTO veprods (linecode, description, barcode, price, stock) values (" +
+						//thisline[0] + ", " +
+						//"'" + thisline[2] + "', " +
+						//"'" + thisline[1] + "', " +
+						//thisline[6] + "," + 
+						//thisline[13] + ")";
+					//html5sql.process(sql, 
+						//function() {
+						//	setTimeout(insertRow, 5);
+						//},
+						//function() {
+						//	alert("there was an error");
+						//}
+					//);
+					setTimeout(insertRow, 5);
 				} else {
 					var endTime = new Date();
 					alert("Database populated in " + ((endTime - startTime) / 1000) + " seconds");
