@@ -46,7 +46,7 @@ body {
 }
 
 /* Portrait layout (default) */
-.splash-screen {
+.screen-splash-screen {
     background:url(../img/logo.png) no-repeat center center; /* 170px x 200px */
     position:absolute;             /* position in the center of the screen */
     left:50%;
@@ -60,7 +60,7 @@ body {
 
 /* Landscape layout (with min-width) */
 @media screen and (min-aspect-ratio: 1/1) and (min-width:400px) {
-    .splash-screen {
+    .screen-splash-screen {
         background-position:left center;
         padding:0px;  /* padding-top + padding-bottom + text area = image height */
         margin:-80px 0px 0px -200px;  /* offset vertical: half of image height */
@@ -118,6 +118,7 @@ h1 {
 	height: 20px;
 	border: 2px solid blue;
 	padding: 5px;
+	margin: 20px;
 }
 .progress-bar {
 	background-color: blue;
