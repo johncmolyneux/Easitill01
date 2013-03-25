@@ -121,6 +121,7 @@ function findLineCode() {
 	
 	var linecode = $("#till-input-linecode").val();
 	
+	html5sql.openDatabase("Easitill", "Easitill DB", _dbSize);
 	html5sql.process(
 		["SELECT * FROM veprods WHERE linecode = " + lineCode + ";"],
 		function(transaction, results, rowsArray) {
