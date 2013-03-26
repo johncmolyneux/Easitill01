@@ -49,6 +49,7 @@
     <!-- Plugins can also be added here. -->
 	<plugin name="File" value="org.apache.cordova.FileUtils" />
 	<plugin name="FileTransfer" value="org.apache.cordova.FileTransfer" />
+	<plugin name="Contacts" value="org.apache.cordova.ContactManager" />
 	<gap:plugin name="BarcodeScanner" />
 
     <!-- Define app icon for each platform. -->

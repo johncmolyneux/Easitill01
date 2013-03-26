@@ -27,9 +27,10 @@ var app = {
         document.addEventListener('deviceready', this.deviceready, false);
     },
     deviceready: function() {
-		$(".screen-splash-screen").delay(500).fadeIn(2000).delay(1000).fadeOut(1000, function() {
-			showScreen("screen-menu");
-		});
+//		$(".screen-splash-screen").delay(500).fadeIn(2000).delay(1000).fadeOut(1000, function() {
+//			showScreen("screen-menu");
+//		});
+		showScreen("screen-menu");
 		$(".screen-menu #button-create-database").on("click", function() {
 			createDatabase();
 		});
@@ -186,4 +187,29 @@ function showContacts() {
 }
 
 function listContacts() {
+	var output = "";
+	
+    function onSuccess(contacts) {
+        for (var i=0; i<contacts.length; i++) {
+			output += "<div><h1>" + contacts[i].displayName + "</h1></div>";
+            for (var j=0; j<contacts[i].phoneNumbers.length; j++) {
+				output += contacts[i].phoneNumbers[j].type + "<br />" + 
+                        contacts[i].phoneNumbers[j].value + "<br />" + 
+                        contacts[i].phoneNumbers[j].pref + "<br />";
+            }
+        }
+		$("#contact-list").html(output);
+    };
+
+    function onError(contactError) {
+        alert("Error : " + contactError);
+    }
+
+	$("#contact-list").html("<h1>Getting contact list...</h1>");
+
+	var options = new ContactFindOptions();
+	options.filter="";
+	filter = ["displayName","phoneNumbers"];
+	navigator.contacts.find(filter, onSuccess, onError, options);	
 }
+
