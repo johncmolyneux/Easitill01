@@ -21,7 +21,7 @@
     -webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
     -webkit-tap-highlight-color: rgba(0,0,0,0); /* make transparent link selection, adjust last value opacity 0 to 1.0 */
     -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
-	font-size: 24px;
+	font-size: 20px;
 }
 
 body {
@@ -40,7 +40,7 @@ body {
     font-family:'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
     height:100%;
     margin:0px;
-    padding:0px;
+    padding:40px;
     text-transform:uppercase;
     width:100%;
 }
@@ -123,4 +123,8 @@ input {
 	background-color: black;
 	width: 0%;
 	height: 100%;
+}
+
+table tr td:first-child {
+	font-weight: bold;
 }
