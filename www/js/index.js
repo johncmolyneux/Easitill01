@@ -187,9 +187,9 @@ function showContacts() {
 }
 
 function listContacts() {
-	var output = "";
-	
+	alert("listContacts");
     function onSuccess(contacts) {
+		var output = "";
         for (var i=0; i<contacts.length; i++) {
 			output += "<div><h1>" + contacts[i].displayName + "</h1></div>";
             for (var j=0; j<contacts[i].phoneNumbers.length; j++) {
@@ -198,6 +198,7 @@ function listContacts() {
                         contacts[i].phoneNumbers[j].pref + "<br />";
             }
         }
+		alert(output);
 		$("#contact-list").html(output);
     };
 
