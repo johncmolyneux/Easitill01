@@ -39,8 +39,8 @@ body {
     background-attachment:fixed;
     font-family:'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
     height:100%;
-    margin:0px;
-    padding:40px;
+    margin:40px;
+    padding:0px;
     text-transform:uppercase;
     width:100%;
 }
