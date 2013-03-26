@@ -25,7 +25,6 @@ var app = {
     },
     bind: function() {
         document.addEventListener('deviceready', this.deviceready, false);
-		document.getElementById('till-button-scan-barcode').addEventListener('click', this.scan, false);
     },
     deviceready: function() {
 		$(".screen-splash-screen").delay(500).fadeIn(2000).delay(1000).fadeOut(1000, function() {
@@ -41,13 +40,8 @@ var app = {
 			findLineCode();
 		});
 		$(".screen-mini-till #till-button-scan-barcode").button().on("click", function() {
-			alert("scan barcode here");
+			scanBarcode();
 		});
-    },
-	scan: function() {
-        window.plugins.barcodeScanner.scan(function(args) {
-            alert(args.text);
-        });
     }
 };
 
@@ -145,4 +139,10 @@ function findLineCode() {
 
 	var db = window.openDatabase("Easitill", "1.0", "Easitill DB", _dbSize);
 	db.transaction(queryDB, errorCB);
+}
+
+function scanBarcode() {
+	window.plugins.barcodeScanner.scan(function(args) {
+		alert(args.text);
+	});
 }
