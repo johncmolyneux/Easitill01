@@ -117,6 +117,14 @@ function runMiniTill() {
 	showScreen("screen-mini-till");
 }
 
+function showProductInfo(item) {
+	$("#td-linecode").text(item.linecode);
+	$("#td-description").text(item.description);
+	$("#td-barcode").text(item.barcode);
+	$("#td-price").text(item.price);
+	$("#td-stock").text(item.stock);
+}
+
 function findLineCode() {
 	
 	function queryDB(tx) {
@@ -126,11 +134,7 @@ function findLineCode() {
 
 	function querySuccess(tx, results) {
 		var item = results.rows.item(0);
-		$("#td-linecode").text(item.linecode);
-		$("#td-description").text(item.description);
-		$("#td-barcode").text(item.barcode);
-		$("#td-price").text(item.price);
-		$("#td-stock").text(item.stock);
+		showProductInfo(item);
 	}
 	
 	function errorCB(err) {
@@ -143,6 +147,22 @@ function findLineCode() {
 
 function scanBarcode() {
 	window.plugins.barcodeScanner.scan(function(args) {
-		alert(args.text);
+
+		function queryDB(tx) {
+			$("#till-input-linecode").val(args.text);
+			tx.executeSql("SELECT * FROM veprods WHERE barcode = " + args.text, [], querySuccess, errorCB);
+		}
+
+		function querySuccess(tx, results) {
+			var item = results.rows.item(0);
+			showProductInfo(item);
+		}
+		
+		function errorCB(err) {
+			alert("Error processing SQL: " + err.code);
+		}
+
+		var db = window.openDatabase("Easitill", "1.0", "Easitill DB", _dbSize);
+		db.transaction(queryDB, errorCB);
 	});
 }
