@@ -150,7 +150,7 @@ function scanBarcode() {
 
 		function queryDB(tx) {
 			$("#till-input-linecode").val(args.text);
-			tx.executeSql("SELECT * FROM veprods WHERE barcode = " + args.text, [], querySuccess, errorCB);
+			tx.executeSql("SELECT * FROM veprods WHERE barcode = '" + args.text + "'", [], querySuccess, errorCB);
 		}
 
 		function querySuccess(tx, results) {
