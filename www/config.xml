@@ -6,7 +6,7 @@
         id        = "com.easitill.test-app"
         version   = "1.0.0">
 
-    <name>Easitill 01</name>
+    <name>Minitill Test App</name>
 
     <description>
         Easitill test application.
@@ -31,7 +31,7 @@
 
     <!-- Customize your app and platform with the preference element. -->
     <preference name="phonegap-version"           value="2.3.0" />          <!-- all: current version of PhoneGap -->
-    <preference name="orientation"                value="default" />        <!-- all: default means both landscape and portrait are enabled -->
+    <preference name="orientation"                value="portrait" />        <!-- all: default means both landscape and portrait are enabled -->
     <preference name="target-device"              value="universal" />      <!-- all: possible values handset, tablet, or universal -->
     <preference name="fullscreen"                 value="true" />           <!-- all: hides the status bar at the top of the screen -->
     <preference name="webviewbounce"              value="true" />           <!-- ios: control whether the screen 'bounces' when scrolled beyond the top -->
@@ -49,6 +49,7 @@
     <!-- Plugins can also be added here. -->
 	<plugin name="File" value="org.apache.cordova.FileUtils" />
 	<plugin name="FileTransfer" value="org.apache.cordova.FileTransfer" />
+	<gap:plugin name="BarcodeScanner" />
 
     <!-- Define app icon for each platform. -->
     <icon src="icon.png" />

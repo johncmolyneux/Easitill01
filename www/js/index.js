@@ -25,6 +25,7 @@ var app = {
     },
     bind: function() {
         document.addEventListener('deviceready', this.deviceready, false);
+		document.getElementById('till-button-scan-barcode').addEventListener('click', this.scan, false);
     },
     deviceready: function() {
 		$(".screen-splash-screen").delay(500).fadeIn(2000).delay(1000).fadeOut(1000, function() {
@@ -43,6 +44,11 @@ var app = {
 			alert("scan barcode here");
 		});
     },
+	scan: function() {
+        window.plugins.barcodeScanner.scan(function(args) {
+            alert(args.text);
+        });
+    }
 };
 
 function showScreen(screenName) {
