@@ -33,13 +33,13 @@ var app = {
 		$(".screen-menu #button-create-database").on("click", function() {
 			createDatabase();
 		});
-		$(".screen-menu #button-run-mini-till").on("click", function() {
+		$(".screen-menu #button-run-minitill").on("click", function() {
 			runMiniTill();
 		});
-		$(".screen-mini-till #till-button-find-linecode").button().on("click", function() {
+		$(".screen-minitill #till-button-find-linecode").button().on("click", function() {
 			findLineCode();
 		});
-		$(".screen-mini-till #till-button-scan-barcode").button().on("click", function() {
+		$(".screen-minitill #till-button-scan-barcode").button().on("click", function() {
 			scanBarcode();
 		});
     }
@@ -114,7 +114,7 @@ function fail(evt) {
 }
 
 function runMiniTill() {
-	showScreen("screen-mini-till");
+	showScreen("screen-minitill");
 }
 
 function showProductInfo(item) {
@@ -128,6 +128,7 @@ function showProductInfo(item) {
 function findLineCode() {
 	
 	function queryDB(tx) {
+		$("#till-input-barcode").val("");
 		var lineCode = $("#till-input-linecode").val();
 		tx.executeSql("SELECT * FROM veprods WHERE linecode = " + lineCode, [], querySuccess, errorCB);
 	}
@@ -149,13 +150,23 @@ function scanBarcode() {
 	window.plugins.barcodeScanner.scan(function(args) {
 
 		function queryDB(tx) {
-			$("#till-input-linecode").val(args.text);
+			$("#till-input-linecode").val("");
+			$("#till-input-barcode").val(args.text);
 			tx.executeSql("SELECT * FROM veprods WHERE barcode = '" + args.text + "'", [], querySuccess, errorCB);
 		}
 
 		function querySuccess(tx, results) {
-			var item = results.rows.item(0);
-			showProductInfo(item);
+			if (results.rows.length == 0) {
+				$("#td-linecode").text("");
+				$("#td-description").text("");
+				$("#td-barcode").text("");
+				$("#td-price").text("");
+				$("#td-stock").text("");
+				alert("no product found");
+			} else {
+				var item = results.rows.item(0);
+				showProductInfo(item);
+			}
 		}
 		
 		function errorCB(err) {
