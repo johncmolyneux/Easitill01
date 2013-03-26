@@ -38,11 +38,11 @@ body {
     );
     background-attachment:fixed;
     font-family:'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
-    height:100%;
-    margin:40px;
+    width:90%;
+    height:90%;
+    margin:5%;
     padding:0px;
     text-transform:uppercase;
-    width:100%;
 }
 
 /* Portrait layout (default) */
@@ -66,10 +66,6 @@ body {
         margin:-80px 0px 0px -200px;  /* offset vertical: half of image height */
                                       /* offset horizontal: half of image width and text area width */
     }
-}
-
-h1 {
-	font-size: 2em !important;
 }
 
 input {
