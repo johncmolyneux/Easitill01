@@ -36,6 +36,9 @@ var app = {
 		$(".screen-menu #button-run-minitill").on("click", function() {
 			runMiniTill();
 		});
+		$(".screen-menu #button-show-contacts").on("click", function() {
+			showContacts();
+		});
 		$(".screen-minitill #till-button-find-linecode").button().on("click", function() {
 			findLineCode();
 		});
@@ -176,4 +179,11 @@ function scanBarcode() {
 		var db = window.openDatabase("Easitill", "1.0", "Easitill DB", _dbSize);
 		db.transaction(queryDB, errorCB);
 	});
+}
+
+function showContacts() {
+	window.open("contacts.html");
+}
+
+function listContacts() {
 }
