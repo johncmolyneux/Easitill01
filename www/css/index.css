@@ -125,17 +125,3 @@ table tr td:first-child {
 	font-weight: bold;
 }
 
-/*------------------------ jQuery UI overrides --------------------------------*/
-
-.ui-content {
-	margin: 20px auto;
-	width: 60%;
-}
-.ui-title {
-	font-size: 40px !important;
-}
-.ui-page.ui-body-c.ui-page-header-fixed.ui-page-active {
-	margin-top:130px;
-}
-
-
