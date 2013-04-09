@@ -27,10 +27,9 @@ var app = {
         document.addEventListener('deviceready', this.deviceready, false);
     },
     deviceready: function() {
-//		$(".screen-splash-screen").delay(500).fadeIn(2000).delay(1000).fadeOut(1000, function() {
-//			showScreen("screen-menu");
-//		});
-		showScreen("screen-menu");
+		$(".screen-splash-screen").delay(500).fadeIn(2000).delay(1000).fadeOut(1000, function() {
+			showScreen("screen-menu");
+		});
 		$(".screen-menu #button-create-database").on("click", function() {
 			createDatabase();
 		});
@@ -187,18 +186,16 @@ function showContacts() {
 }
 
 function listContacts() {
-	alert("listContacts");
     function onSuccess(contacts) {
 		var output = "";
-        for (var i=0; i<contacts.length; i++) {
+        for (var i = 0; i < contacts.length; i++) {
 			output += "<div><h1>" + contacts[i].displayName + "</h1></div>";
-            for (var j=0; j<contacts[i].phoneNumbers.length; j++) {
+            for (var j = 0; j < contacts[i].phoneNumbers.length; j++) {
 				output += contacts[i].phoneNumbers[j].type + "<br />" + 
                         contacts[i].phoneNumbers[j].value + "<br />" + 
                         contacts[i].phoneNumbers[j].pref + "<br />";
             }
         }
-		alert(output);
 		$("#contact-list").html(output);
     };
 
@@ -209,8 +206,8 @@ function listContacts() {
 	$("#contact-list").html("<h1>Getting contact list...</h1>");
 
 	var options = new ContactFindOptions();
-	options.filter="";
-	filter = ["displayName","phoneNumbers"];
+	options.filter = "";
+	filter = ["displayName", "phoneNumbers"];
 	navigator.contacts.find(filter, onSuccess, onError, options);	
 }
 
